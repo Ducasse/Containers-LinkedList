@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "StephaneDucasse 8/18/2016 12:04",
+	"super" : "SequenceableCollection",
+	"category" : "Containers-LinkedList",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"firstLink",
+		"lastLink"
+	],
+	"name" : "CTLinkedList",
+	"type" : "normal"
+}

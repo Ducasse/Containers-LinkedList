@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "StephaneDucasse 8/18/2016 12:06",
+	"super" : "CTLink",
+	"category" : "Containers-LinkedList",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"value"
+	],
+	"name" : "CTValueLink",
+	"type" : "normal"
+}
