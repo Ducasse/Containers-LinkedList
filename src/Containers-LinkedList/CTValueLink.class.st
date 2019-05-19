@@ -34,7 +34,7 @@ CTValueLink >> hash [
 
 { #category : #printing }
 CTValueLink >> printOn: aStream [
-	aStream nextPutAll: 'ValueLink('.
+	aStream nextPutAll: 'a CTValueLink('.
 	value printOn: aStream.
 	aStream nextPut: $)
 

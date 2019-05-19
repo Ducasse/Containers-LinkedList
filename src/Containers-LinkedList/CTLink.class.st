@@ -17,6 +17,14 @@ CTLink class >> nextLink: aLink [
 	^self new nextLink: aLink; yourself
 ]
 
+{ #category : #conversion }
+CTLink >> asCTLink [ 
+	^ self 
+
+	
+	
+]
+
 { #category : #accessing }
 CTLink >> nextLink [
 	"Answer the link to which the receiver points."

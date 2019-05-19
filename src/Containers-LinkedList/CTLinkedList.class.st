@@ -124,7 +124,7 @@ CTLinkedList >> add: aLinkOrObject afterLink: otherLink [
 	| savedLink aLink |
 	lastLink == otherLink ifTrue: [^ self addLast: aLinkOrObject].
 	savedLink := otherLink nextLink.
-	aLink := CTValueLink value: aLinkOrObject.
+	aLink := self linkOn: aLinkOrObject.
 	otherLink nextLink: aLink.
 	aLink nextLink:  savedLink.
 	^aLink.
@@ -150,7 +150,7 @@ CTLinkedList >> add: aLinkOrObject beforeLink: otherLink [
 	[currentLink == nil] whileFalse: [
 		currentLink nextLink == otherLink ifTrue: [
 			| aLink |
-			aLink := CTValueLink value: aLinkOrObject.
+			aLink := self linkOn: aLinkOrObject.
 			aLink nextLink: currentLink nextLink.
 			currentLink nextLink: aLink.
 			^ aLink
@@ -164,7 +164,7 @@ CTLinkedList >> add: aLinkOrObject beforeLink: otherLink [
 CTLinkedList >> addFirst: aLinkOrObject [ 
 	"Add aLink to the beginning of the receiver's list. Answer aLink."
 	|aLink|
-	aLink := CTValueLink value: aLinkOrObject.
+	aLink := self linkOn: aLinkOrObject.
 	self isEmpty ifTrue: [lastLink := aLink].
 	aLink nextLink: firstLink.
 	firstLink := aLink.
@@ -174,8 +174,8 @@ CTLinkedList >> addFirst: aLinkOrObject [
 { #category : #adding }
 CTLinkedList >> addLast: aLinkOrObject [
 	"Add aLink to the end of the receiver's list. Answer aLink."
-	|aLink|
-	aLink := CTValueLink value: aLinkOrObject.
+	| aLink |
+	aLink := self linkOn: aLinkOrObject.
 	self isEmpty
 		ifTrue: [firstLink := aLink]
 		ifFalse: [lastLink nextLink: aLink].
@@ -391,6 +391,13 @@ CTLinkedList >> linkOf: anObject ifAbsent: errorBlock [
 		linksDo: [:el | el value = anObject
 				ifTrue: [^ el]].
 	^ errorBlock value
+]
+
+{ #category : #private }
+CTLinkedList >> linkOn: anObjectOrLink [
+	"this definition ^ CTValueLink value: anObjectOrLink is not equivalent to the current one because this one is systematically wrapping the argument while the current one, only wrap if the argument is not already a CTValueLink"
+	
+	^ anObjectOrLink asCTLink 
 ]
 
 { #category : #enumerating }

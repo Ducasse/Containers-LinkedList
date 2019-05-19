@@ -68,7 +68,7 @@ CTDoubleLinkedList >> add: anObjectOrLink afterLink: otherLink [
 	| link otherLinkSuccessor |
 	otherLink = tail
 		ifTrue: [ ^ self addLast: anObjectOrLink ].
-	link := CTDoubleLink value: anObjectOrLink.
+	link := self linkOn: anObjectOrLink.
 	otherLinkSuccessor := otherLink nextLink.
 	otherLink nextLink: link.
 	link previousLink: otherLink.
@@ -86,7 +86,7 @@ CTDoubleLinkedList >> add: anObjectOrLink beforeLink: otherLink [
 	| link otherLinkPredeccessor |
 	otherLink = head
 		ifTrue: [ ^ self addFirst: anObjectOrLink ].
-	link := CTDoubleLink value: anObjectOrLink.
+	link := self linkOn: anObjectOrLink.
 	otherLinkPredeccessor := otherLink previousLink.
 	otherLink previousLink: link.
 	link nextLink: otherLink.
@@ -107,9 +107,9 @@ CTDoubleLinkedList >> addAll: collection [
 CTDoubleLinkedList >> addFirst: anObjectOrLink [
 	"Add anObjectOrLink to me, so that it becomes the first one.
 	Return the internal link object."
-	
+
 	| link |
-	link := CTDoubleLink value: anObjectOrLink.
+	link := self linkOn: anObjectOrLink.
 	link nextLink: head.
 	head ifNotNil: [ head previousLink: link ].
 	tail ifNil: [ tail := link ].
@@ -123,7 +123,7 @@ CTDoubleLinkedList >> addLast: anObjectOrLink [
 	Return the internal link object."
 
 	| link |
-	link := CTDoubleLink value: anObjectOrLink.
+	link := self linkOn: anObjectOrLink.
 	link previousLink: tail.
 	tail ifNotNil: [ tail nextLink: link ].
 	head ifNil: [ head := link ].
@@ -165,7 +165,7 @@ CTDoubleLinkedList >> emptyCheck [
 
 { #category : #accessing }
 CTDoubleLinkedList >> first [
-	"Returnt the first element that I hold, also known as my head value.
+	"Return the first element that I hold, also known as my head value.
 	Signal a CollectionIsEmpty excpetion when I am empty."
 	
 	self emptyCheck.
@@ -213,6 +213,13 @@ CTDoubleLinkedList >> lastLink [
 	
 	self emptyCheck.
 	^ tail
+]
+
+{ #category : #private }
+CTDoubleLinkedList >> linkOn: anObjectOrLink [
+	"this definition ^ CTDoubleLink value: anObjectOrLink is not equivalent to the current one because this one is systematically wrapping the argument while the current one, only wrap if the argument is not already a CTDoubleLink"
+	
+	^ anObjectOrLink asCTDoubleLink 
 ]
 
 { #category : #enumerating }

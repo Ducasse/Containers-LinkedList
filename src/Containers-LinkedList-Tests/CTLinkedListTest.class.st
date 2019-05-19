@@ -953,7 +953,8 @@ CTLinkedListTest >> testTAdd [
 
 	| added |
 	added := self otherCollection add: self element.
-	self assert: added = self element. "equality or identity ?"
+	"here we see that the add element is not wrapped when it is already in a link."
+	self assert: added = self element.
 	self assert: (self otherCollection includes: self element).
 
 	

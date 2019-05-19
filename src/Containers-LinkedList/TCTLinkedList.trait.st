@@ -77,7 +77,7 @@ TCTLinkedList >> hash [
 	^ hash
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 TCTLinkedList >> ifNotEmpty: aBlock [
 	"Evaluate the given block with the receiver as argument, answering its value
       unless the receiver is empty, in which case answer the receiver
@@ -89,12 +89,12 @@ TCTLinkedList >> ifNotEmpty: aBlock [
 	allows one to write expressions like the following ones:
 		self classifyMethodAs: (myProtocol ifEmpty: ['As yet unclassified']"
 	
-    ^self isEmpty
-          ifTrue: [self]
-          ifFalse: [aBlock cull: self]
+	^ self isEmpty
+			ifTrue: [self]
+			ifFalse: [aBlock cull: self]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 TCTLinkedList >> isNotEmpty [
 	^ self isEmpty not
 ]

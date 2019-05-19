@@ -21,6 +21,14 @@ CTDoubleLink class >> value: anObject [
 		yourself
 ]
 
+{ #category : #conversion }
+CTDoubleLink >> asCTDoubleLink [ 
+	^ self 
+
+	
+	
+]
+
 { #category : #initialize }
 CTDoubleLink >> clearLinks [
 	nextLink := previousLink := nil
@@ -68,9 +76,9 @@ CTDoubleLink >> previousLink: anObject [
 	previousLink := anObject
 ]
 
-{ #category : #converting }
+{ #category : #printing }
 CTDoubleLink >> printOn: aStream [
-	aStream nextPutAll: 'CTDoubleLink ('.
+	aStream nextPutAll: 'a CTDoubleLink ('.
 	value printOn: aStream.
 	aStream nextPut: $)
 ]
@@ -99,8 +107,8 @@ CTDoubleLink >> reverseCollect: aBlock untilTrue: aConditionBlock [
 	^ list
 ]
 
-{ #category : #iterations }
-CTDoubleLink >> species [
+{ #category : #initialize }
+CTDoubleLink >> species [ 
 	^ CTDoubleLinkedList
 ]
 
