@@ -1,3 +1,0 @@
-iterations
-species
-	^ CTDoubleLinkedList
