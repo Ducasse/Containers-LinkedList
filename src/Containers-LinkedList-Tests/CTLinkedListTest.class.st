@@ -86,7 +86,7 @@ CTLinkedListTest >> collectionWith1TimeSubcollection [
 
 { #category : #requirements }
 CTLinkedListTest >> collectionWithCopyNonIdentical [
-	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
+	"Return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionWithoutEqualElements
 ]
 
@@ -123,7 +123,7 @@ CTLinkedListTest >> collectionWithoutNilElements [
 
 { #category : #requirements }
 CTLinkedListTest >> element [
-	^ link ifNil: [link := ValueLink value: 42. "so that we can recognize this link"]
+	^ link ifNil: [link := CTValueLink value: 42. "so that we can recognize this link"]
 ]
 
 { #category : #requirements }
@@ -140,7 +140,7 @@ CTLinkedListTest >> elementInForIndexAccessing [
 
 { #category : #requirements }
 CTLinkedListTest >> elementNotIn [
-	^ Link new
+	^ CTLink new
 ]
 
 { #category : #requirements }
@@ -163,8 +163,8 @@ CTLinkedListTest >> elementNotInForOccurrences [
 
 { #category : #requirements }
 CTLinkedListTest >> elementToAdd [
-" return an element of type 'nonEmpy' elements'type'"
-	^ ValueLink value: 77
+	"return an element of type 'nonEmpy' elements'type'"
+	^ CTValueLink value: 77
 ]
 
 { #category : #'tests - empty' }
@@ -251,7 +251,7 @@ ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 
 
 { #category : #requirements }
 CTLinkedListTest >> otherCollection [
-	^ otherList ifNil: [otherList := CTLinkedList with: Link new with: Link new]
+	^ otherList ifNil: [otherList := CTLinkedList with: CTLink new with: CTLink new]
 ]
 
 { #category : #requirements }
@@ -275,7 +275,7 @@ CTLinkedListTest >> setUp [
 	link2 := 'test'.
 	link3 := $h.
 	link4 := Set new.
-	elementNotIn := Link new.
+	elementNotIn := CTLink new.
 	collectionWithoutNil := CTLinkedList new add: link1; add: link2 ; add: link3; yourself.
 	elementIn := 'thisElementIsIncluded'.
 	collectionWithoutEqualElements := CTLinkedList new add: elementIn ; add: 'pewpew' ; add: 'normal links'; add: 'are no fun!' ;add: $x ;yourself.
@@ -283,8 +283,8 @@ CTLinkedListTest >> setUp [
 	unsortedCollection := CTLinkedList new addAll: #(57 937 92 49 0 78 -87); yourself.
 	sortedCollection := CTLinkedList new addAll: #(-87 0 49 57 78 92 937); yourself.
 	"sameAttendAndBegining := LinkedList new add: Link new; add: Link new ; add: Link new; yourself."
-	link := ValueLink value: 42.
-	nonEmpty1Element := CTLinkedList new add: Link new; yourself.
+	link := CTValueLink value: 42.
+	nonEmpty1Element := CTLinkedList new add: CTLink new; yourself.
 	 "so that we can recognize this link"
 	"nonEmpty := LinkedList with: link with: Link new."
 	"otherList := LinkedList with: Link new with: Link new."
@@ -516,32 +516,25 @@ CTLinkedListTest >> test07addAfter [
 { #category : #testing }
 CTLinkedListTest >> test08addAfter [
 	| l first |
-	l := LinkedList new.
+	l := CTLinkedList new.
 	first := self class new n: 1.
-	
 	l add: first.
 	l add: (self class new n: 3).
-
-	self assert: (l collect:[:e | e n]) asArray  = #(1 3).
-	
+	self assert: (l collect: [:e | e n]) asArray equals: #(1 3).
 	l add: (self class new n: 2) after: first.
-
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
+	self assert: (l collect: [:e | e n]) asArray equals: #(1 2 3)
 ]
 
 { #category : #testing }
 CTLinkedListTest >> test09addAfter [
 	| l last |
-	l := LinkedList new.
+	l := CTLinkedList new.
 	last := self class new n: 2.
 	l add: (self class new n: 1).
 	l add: last.
-	
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2).
-	 
+	self assert: (l collect:[:e | e n]) asArray equals: #(1 2).
 	l add: (self class new n: 3) after: last.
-
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
+	self assert: (l collect:[:e | e n]) asArray equals: #(1 2 3).
 ]
 
 { #category : #'tests - fixture' }
@@ -709,10 +702,10 @@ CTLinkedListTest >> test14removeIfAbsent [
 { #category : #testing }
 CTLinkedListTest >> test22addAll [
 	| link5 link6 link7 link8 listToBeAdded |
-	link5 := Link new.
-	link6 := Link new.
-	link7 := Link new.
-	link8 := Link new.
+	link5 := CTLink new.
+	link6 := CTLink new.
+	link7 := CTLink new.
+	link8 := CTLink new.
 	
 	list
 		add: link1;
@@ -720,7 +713,7 @@ CTLinkedListTest >> test22addAll [
 		add: link3;
 		add: link4.
 		
-	listToBeAdded := LinkedList new.
+	listToBeAdded := CTLinkedList new.
 	listToBeAdded
 		add: link5;
 		add: link6;
@@ -729,14 +722,14 @@ CTLinkedListTest >> test22addAll [
 		
 	list addAll: listToBeAdded.
 	
-	self should: [(list at: 1) == link1].
-	self should: [(list at: 2) == link2].
-	self should: [(list at: 3) == link3].
-	self should: [(list at: 4) == link4].
-	self should: [(list at: 5) == link5].
-	self should: [(list at: 6) == link6].
-	self should: [(list at: 7) == link7].
-	self should: [(list at: 8) == link8].
+	self assert: (list at: 1) == link1.
+	self assert: (list at: 2) == link2.
+	self assert: (list at: 3) == link3.
+	self assert: (list at: 4) == link4.
+	self assert: (list at: 5) == link5.
+	self assert: (list at: 6) == link6.
+	self assert: (list at: 7) == link7.
+	self assert: (list at: 8) == link8
 ]
 
 { #category : #tests }
@@ -745,12 +738,11 @@ CTLinkedListTest >> testAddAfter [
 	| l first |
 	l := CTLinkedList new.
 	first := self class new n: 1.
-	
 	l add: first.
 	l add: (self class new n: 3).
-	self assert: (l collect:[:e | e n]) asArray  = #(1 3).
+	self assert: (l collect: [:e | e n]) asArray equals: #(1 3).
 	l add: (self class new n: 2) after: first.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
+	self assert: (l collect: [:e | e n]) asArray equals: #(1 2 3).
 ]
 
 { #category : #tests }
@@ -761,9 +753,9 @@ CTLinkedListTest >> testAddAfterLast [
 	last := self class new n: 2.
 	l add: (self class new n: 1).
 	l add: last.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2). 
+	self assert: (l collect:[ :e | e n]) asArray equals: #(1 2). 
 	l add: (self class new n: 3) after: last.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
+	self assert: (l collect:[ :e | e n]) asArray equals: #(1 2 3).
 ]
 
 { #category : #tests }
@@ -778,11 +770,11 @@ CTLinkedListTest >> testAddAfterLast2 [
 	fourth :=self class new n: 4.
 	l addLast: first.
 	l addLast: second.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2). 
+	self assert: (l collect:[:e | e n]) asArray equals: #(1 2). 
 	l add: third after: second.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
+	self assert: (l collect:[:e | e n]) asArray equals: #(1 2 3).
 	l addLast: fourth.
-	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3 4).
+	self assert: (l collect:[:e | e n]) asArray equals: #(1 2 3 4).
 ]
 
 { #category : #'tests - sequenceable' }
