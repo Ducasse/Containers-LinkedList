@@ -280,14 +280,14 @@ CTLinkedListTest >> setUp [
 	link2 := 'test'.
 	link3 := $h.
 	link4 := Set new.
-	elementNotIn := CTLink new.
-	collectionWithoutNil := CTLinkedList new
+	elementNotIn := self simpleLinkElementClass new.
+	collectionWithoutNil := self collectionClass new
 		add: link1;
 		add: link2;
 		add: link3;
 		yourself.
 	elementIn := 'thisElementIsIncluded'.
-	collectionWithoutEqualElements := CTLinkedList new
+	collectionWithoutEqualElements := self collectionClass new
 		add: elementIn;
 		add: 'pewpew';
 		add: 'normal links';
@@ -295,20 +295,17 @@ CTLinkedListTest >> setUp [
 		add: $x;
 		yourself.
 	collection5Elements := collectionWithoutEqualElements.
-	unsortedCollection := CTLinkedList new
+	unsortedCollection := self collectionClass new
 		addAll: #(57 937 92 49 0 78 -87);
 		yourself.
-	sortedCollection := CTLinkedList new
+	sortedCollection := self collectionClass new
 		addAll: #(-87 0 49 57 78 92 937);
 		yourself.
-	"sameAttendAndBegining := LinkedList new add: Link new; add: Link new ; add: Link new; yourself."
-	link := CTValueLink value: 42.
-	nonEmpty1Element := CTLinkedList new
-		add: CTLink new;
-		yourself
-	"so that we can recognize this link"
-	"nonEmpty := LinkedList with: link with: Link new."
-	"otherList := LinkedList with: Link new with: Link new."
+	link := self valueLinkElementClass value: 42.
+	nonEmpty1Element := self collectionClass new
+		add:
+			self simpleLinkElementClass new;
+			yourself
 ]
 
 { #category : #'class/instances' }
@@ -572,7 +569,7 @@ CTLinkedListTest >> test0FixtureIndexAccessTest [
 	self collectionMoreThan1NoDuplicates
 		detect: [ :each | (self collectionMoreThan1NoDuplicates occurrencesOf: each) > 1 ]
 		ifNone: [ res := false ].
-	self assert: res = false.
+	self deny: res.
 	self elementInForIndexAccessing.
 	self assert: (self collectionMoreThan1NoDuplicates includes: self elementInForIndexAccessing).
 	self elementNotInForIndexAccessing.
@@ -728,26 +725,22 @@ CTLinkedListTest >> test14removeIfAbsent [
 { #category : #testing }
 CTLinkedListTest >> test22addAll [
 	| link5 link6 link7 link8 listToBeAdded |
-	link5 := CTLink new.
-	link6 := CTLink new.
-	link7 := CTLink new.
-	link8 := CTLink new.
-	
+	link5 := self simpleLinkElementClass new.
+	link6 := self simpleLinkElementClass new.
+	link7 := self simpleLinkElementClass new.
+	link8 := self simpleLinkElementClass new.
 	list
 		add: link1;
 		add: link2;
 		add: link3;
 		add: link4.
-		
-	listToBeAdded := CTLinkedList new.
+	listToBeAdded := self collectionClass new.
 	listToBeAdded
 		add: link5;
 		add: link6;
 		add: link7;
 		add: link8.
-		
 	list addAll: listToBeAdded.
-	
 	self assert: (list at: 1) == link1.
 	self assert: (list at: 2) == link2.
 	self assert: (list at: 3) == link3.
@@ -760,28 +753,26 @@ CTLinkedListTest >> test22addAll [
 
 { #category : #tests }
 CTLinkedListTest >> testAddAfter [
-
 	| l first |
-	l := CTLinkedList new.
+	l := self collectionClass new.
 	first := self class new n: 1.
 	l add: first.
 	l add: (self class new n: 3).
-	self assert: (l collect: [:e | e n]) asArray equals: #(1 3).
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 3).
 	l add: (self class new n: 2) after: first.
-	self assert: (l collect: [:e | e n]) asArray equals: #(1 2 3).
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2 3)
 ]
 
 { #category : #tests }
 CTLinkedListTest >> testAddAfterLast [
-
 	| l last |
-	l := CTLinkedList new.
+	l := self collectionClass new.
 	last := self class new n: 2.
 	l add: (self class new n: 1).
 	l add: last.
-	self assert: (l collect:[ :e | e n]) asArray equals: #(1 2). 
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2).
 	l add: (self class new n: 3) after: last.
-	self assert: (l collect:[ :e | e n]) asArray equals: #(1 2 3).
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2 3)
 ]
 
 { #category : #tests }
@@ -789,24 +780,24 @@ CTLinkedListTest >> testAddAfterLast2 [
 	"LinkedListTest new testAddAfterLast2"
 
 	| l first second third fourth |
-	l := CTLinkedList new.
+	l := self collectionClass new.
 	first := self class new n: 1.
 	second := self class new n: 2.
 	third := self class new n: 3.
-	fourth :=self class new n: 4.
+	fourth := self class new n: 4.
 	l addLast: first.
 	l addLast: second.
-	self assert: (l collect:[:e | e n]) asArray equals: #(1 2). 
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2).
 	l add: third after: second.
-	self assert: (l collect:[:e | e n]) asArray equals: #(1 2 3).
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2 3).
 	l addLast: fourth.
-	self assert: (l collect:[:e | e n]) asArray equals: #(1 2 3 4).
+	self assert: (l collect: [ :e | e n ]) asArray equals: #(1 2 3 4)
 ]
 
 { #category : #'tests - sequenceable' }
 CTLinkedListTest >> testAtPut [
 	| ll |
-	ll := CTLinkedList new.
+	ll := self collectionClass new.
 	ll add: 1.
 	ll at: 1 put: 2.
 	self assert: (ll at: 1) equals: 2
@@ -815,7 +806,7 @@ CTLinkedListTest >> testAtPut [
 { #category : #'tests - sequenceable' }
 CTLinkedListTest >> testAtPutOutsideBounds [
 	| ll |
-	ll := CTLinkedList new.
+	ll := self collectionClass new.
 	self should: [ ll at: 1 put: 1 ] raise: SubscriptOutOfBounds
 ]
 
@@ -823,29 +814,33 @@ CTLinkedListTest >> testAtPutOutsideBounds [
 CTLinkedListTest >> testCreateAs [
 	"Test that a LinkedList can be created by sending message #as: to another collection.
 	Implementation note: this method is generic for sequenceable collection and should be traitified."
+
 	| anotherCollection aLinkedList |
 	anotherCollection := 1 to: 10.
-	aLinkedList := anotherCollection as: CTLinkedList.
-	self assert: (aLinkedList isMemberOf: CTLinkedList).
+	aLinkedList := anotherCollection as: self collectionClass.
+	self assert: (aLinkedList isMemberOf: self collectionClass).
 	self assert: aLinkedList size equals: anotherCollection size.
-	aLinkedList with: anotherCollection do: [:nextElementOfLinkedList :nextElementOfAnotherCollection |
-		self assert: nextElementOfLinkedList equals: nextElementOfAnotherCollection]
+	aLinkedList
+		with: anotherCollection
+		do: [ :nextElementOfLinkedList :nextElementOfAnotherCollection | 
+			self
+				assert: nextElementOfLinkedList
+				equals: nextElementOfAnotherCollection ]
 ]
 
 { #category : #'tests - cycles' }
 CTLinkedListTest >> testCycles [
-  1 to: 42 do: [ :each |
-    list := CTLinkedList withAll: (1 to: each).
-    "Warning: the following statement creates a cycle,
+	1 to: 42 do: [ :each | 
+		list := self collectionClass withAll: (1 to: each).
+		"Warning: the following statement creates a cycle,
      inspecting/viewing list will probably fail"
-    list lastLink nextLink: list firstLink.
-    self assert: list containsCycle ]
+		list lastLink nextLink: list firstLink.
+		self assert: list containsCycle ]
 ]
 
 { #category : #'tests - includes' }
 CTLinkedListTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
-
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
 
 	| collection element |
@@ -865,71 +860,92 @@ CTLinkedListTest >> testRemoveAll [
 	list2 := list copy.
 	list removeAll.
 	
-	self assert: list size = 0.
+	self assert: list size isZero.
 	self assert: list2 size = 4 description: 'the copy has not been modified'
 ]
 
 { #category : #tests }
 CTLinkedListTest >> testSort [
-	|aLinkedList|
-	aLinkedList := (CTLinkedList with: 1 with: 2).
-	aLinkedList  sort: [ :a :b | a > b].
-	self assert: aLinkedList equals: (CTLinkedList with: 2 with: 1)
+	| aLinkedList |
+	aLinkedList := self collectionClass with: 1 with: 2.
+	aLinkedList sort: [ :a :b | a > b ].
+	self
+		assert: aLinkedList
+		equals: (self collectionClass with: 2 with: 1)
 ]
 
 { #category : #'tests - swap' }
 CTLinkedListTest >> testSwapAdjacent [
-	|aList|
-	aList := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
-	
+	| aList |
+	aList := self collectionClass
+		with: 5
+		with: 4
+		with: 3
+		with: 2
+		with: 1.
 	aList swap: 3 with: 4.
 	self assert: (aList at: 3) equals: 2.
-	self assert: (aList at: 4) equals: 3.
+	self assert: (aList at: 4) equals: 3
 ]
 
 { #category : #'tests - swap' }
 CTLinkedListTest >> testSwapAdjacentEnd [
-	|aList|
-	aList := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
-	
+	| aList |
+	aList := self collectionClass
+		with: 5
+		with: 4
+		with: 3
+		with: 2
+		with: 1.
 	aList swap: 4 with: 5.
 	self assert: (aList at: 4) equals: 1.
 	self assert: (aList at: 5) equals: 2.
-	self assert: aList last equals: 2.
+	self assert: aList last equals: 2
 ]
 
 { #category : #'tests - swap' }
 CTLinkedListTest >> testSwapAdjacentStart [
-	|aList|
-	aList := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
-	
+	| aList |
+	aList := self collectionClass
+		with: 5
+		with: 4
+		with: 3
+		with: 2
+		with: 1.
 	aList swap: 1 with: 2.
 	self assert: (aList at: 1) equals: 4.
 	self assert: (aList at: 2) equals: 5.
-	self assert: aList first equals: 4.
+	self assert: aList first equals: 4
 ]
 
 { #category : #'tests - swap' }
 CTLinkedListTest >> testSwapBasic [
-	|aList|
-	aList := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
-	
+	| aList |
+	aList := self collectionClass
+		with: 5
+		with: 4
+		with: 3
+		with: 2
+		with: 1.
 	aList swap: 2 with: 4.
 	self assert: (aList at: 2) equals: 2.
-	self assert: (aList at: 4) equals: 4.
-
+	self assert: (aList at: 4) equals: 4
 ]
 
 { #category : #'tests - swap' }
 CTLinkedListTest >> testSwapStartAndEnd [
-	|aList|
-	aList := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
-	
+	| aList |
+	aList := self collectionClass
+		with: 5
+		with: 4
+		with: 3
+		with: 2
+		with: 1.
 	aList swap: 1 with: 5.
 	self assert: (aList at: 1) equals: 1.
 	self assert: (aList at: 5) equals: 5.
 	self assert: aList first equals: 1.
-	self assert: aList last equals: 5.
+	self assert: aList last equals: 5
 ]
 
 { #category : #'tests - adding' }
@@ -941,6 +957,17 @@ CTLinkedListTest >> testTAdd [
 	self assert: (self otherCollection includes: self element).
 
 	
+]
+
+{ #category : #'tests - adding' }
+CTLinkedListTest >> testTAddAll [
+
+	| added collection toBeAdded |
+	collection := self collectionWithElement.
+	toBeAdded := self otherCollection.
+	added := collection addAll: toBeAdded.
+	self assert: added == toBeAdded.	"test for identity because #addAll: has not reason to copy its parameter."
+	self assert: (collection includesAll: toBeAdded )
 ]
 
 { #category : #requirements }
