@@ -1,13 +1,13 @@
 Class {
-	#name : #CTDoubleLinkedListTests,
+	#name : #DoubleLinkedListTests,
 	#superclass : #TestCase,
-	#category : 'Containers-LinkedList-Tests'
+	#category : #'Containers-DoubleLinkedList-Tests'
 }
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testAddAfterLink [
+DoubleLinkedListTests >> testAddAfterLink [
 	| list link |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: 1.
 	link := list add: 2.
 	list add: 3.
@@ -16,9 +16,9 @@ CTDoubleLinkedListTests >> testAddAfterLink [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testAddBeforeLink [
+DoubleLinkedListTests >> testAddBeforeLink [
 	| list link |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: 1.
 	link := list add: 2.
 	list add: 3.
@@ -27,9 +27,9 @@ CTDoubleLinkedListTests >> testAddBeforeLink [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testAddFirst [
+DoubleLinkedListTests >> testAddFirst [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
 	list addFirst: 0.
 	self deny: list isEmpty.
@@ -39,9 +39,9 @@ CTDoubleLinkedListTests >> testAddFirst [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testAddLast [
+DoubleLinkedListTests >> testAddLast [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
 	list addLast: 0.
 	self deny: list isEmpty.
@@ -51,18 +51,18 @@ CTDoubleLinkedListTests >> testAddLast [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testCollect [
+DoubleLinkedListTests >> testCollect [
 	| list doubles |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: #(1 2 3).
 	doubles := list collect: [ :each | each * 2 ].
 	self assert: doubles asArray equals: #(2 4 6)
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testDo [
+DoubleLinkedListTests >> testDo [
 	| list value |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
 	value := 1.
 	list do: [ :each |
@@ -71,20 +71,19 @@ CTDoubleLinkedListTests >> testDo [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testEmpty [
+DoubleLinkedListTests >> testEmpty [
 	| list |
-	list := CTDoubleLinkedList new.
-	self assert: list isEmpty.
+	list := DoubleLinkedList new.
+	self assertEmpty: list.
 	self should: [ list first ] raise: CollectionIsEmpty.
 	self should: [ list last ] raise: CollectionIsEmpty.
 	list do: [ :each | self fail ]
-	
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testFirstAndLastLink [
+DoubleLinkedListTests >> testFirstAndLastLink [
 	| list firstLink secondLink |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	self should: [ list firstLink ] raise: CollectionIsEmpty. 
 	self should: [ list lastLink ] raise: CollectionIsEmpty. 
 	self should: [ list first ] raise: CollectionIsEmpty. 
@@ -106,18 +105,18 @@ CTDoubleLinkedListTests >> testFirstAndLastLink [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testIncludes [
+DoubleLinkedListTests >> testIncludes [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
 	self assert: (list includes: 5).
 	self deny: (list includes: 0)
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testLinksDo [
+DoubleLinkedListTests >> testLinksDo [
 	| list links index |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	links := OrderedCollection new.
 	1 to: 10 do: [ :each |
 		links add: (list add: each) ].
@@ -129,23 +128,9 @@ CTDoubleLinkedListTests >> testLinksDo [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testLinksReverseCollect [
-	| list fifthItem |
-	list := CTDoubleLinkedList doubleLinkedListWith10Integers.
-	fifthItem := list linkAt: 5.
-	self
-		assert:
-			(fifthItem
-				linksReverseCollect: [ :aLink | 
-					self assert: (aLink isKindOf: CTDoubleLink).
-					aLink value ]) asArray
-		equals: CTDoubleLinkedList doubleLinkedListFrom4To1 asArray
-]
-
-{ #category : #testing }
-CTDoubleLinkedListTests >> testOne [
+DoubleLinkedListTests >> testOne [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: #one.
 	self deny: list isEmpty.
 	self assert: list first equals: #one.
@@ -154,70 +139,42 @@ CTDoubleLinkedListTests >> testOne [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testOneRemoveFirst [
+DoubleLinkedListTests >> testOneRemoveFirst [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: #one.
 	list removeFirst.
-	self assert: list isEmpty.
+	self assertEmpty: list.
 	list add: #one.
 	list removeLast.
-	self assert: list isEmpty
+	self assertEmpty: list
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testOneRemoveLast [
+DoubleLinkedListTests >> testOneRemoveLast [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: #one.
 	list removeLast.
-	self assert: list isEmpty.
+	self assertEmpty: list.
 	list add: #one.
 	list removeLast.
-	self assert: list isEmpty
+	self assertEmpty: list
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testReject [
+DoubleLinkedListTests >> testReject [
 	| list even |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
 	even := list reject: [ :each | each odd ].
 	self assert: even asArray equals: #(2 4 6 8 10)
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testReverseCollect [
-	| list fifthItem |
-	list := CTDoubleLinkedList doubleLinkedListWith10Integers.
-	fifthItem := list linkAt: 5.
-	self
-		assert:
-			(fifthItem
-				reverseCollect: [ :aValue | 
-					self assert: (aValue isKindOf: Number).
-					aValue ]) asArray
-		equals: CTDoubleLinkedList doubleLinkedListFrom4To1 asArray
-]
-
-{ #category : #testing }
-CTDoubleLinkedListTests >> testReverseCollectUntilTrue [
-	| list fifthItem |
-	list := CTDoubleLinkedList doubleLinkedListWith10Integers.
-	fifthItem := list linkAt: 5.
-	self
-		assert:
-			(fifthItem
-				reverseCollect: [ :aValue | 
-					self assert: (aValue isKindOf: Number).
-					aValue ] untilTrue: [ :item | item = 2 ]) asArray
-		equals: #(4 3) asArray
-]
-
-{ #category : #testing }
-CTDoubleLinkedListTests >> testReverseDo [
+DoubleLinkedListTests >> testReverseDo [
 	| list value |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
 	value := 10.
 	list reverseDo: [ :each |
@@ -226,9 +183,9 @@ CTDoubleLinkedListTests >> testReverseDo [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testReverseLinksDo [
+DoubleLinkedListTests >> testReverseLinksDo [
 	| list links index |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	links := OrderedCollection new.
 	1 to: 10 do: [ :each |
 		links add: (list add: each) ].
@@ -240,18 +197,18 @@ CTDoubleLinkedListTests >> testReverseLinksDo [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testSelect [
+DoubleLinkedListTests >> testSelect [
 	| list even |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
 	even := list select: [ :each | each even ].
 	self assert: even asArray equals: #(2 4 6 8 10)
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testThree [
+DoubleLinkedListTests >> testThree [
 	| list |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
 	self deny: list isEmpty.
 	self assert: list first equals: 1.
@@ -260,9 +217,9 @@ CTDoubleLinkedListTests >> testThree [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testThreeRemoveFirst [
+DoubleLinkedListTests >> testThreeRemoveFirst [
 	| list link |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
 	link := list removeFirst.
 	self assert: link value equals: 1.
@@ -272,9 +229,9 @@ CTDoubleLinkedListTests >> testThreeRemoveFirst [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testThreeRemoveLast [
+DoubleLinkedListTests >> testThreeRemoveLast [
 	| list link |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
 	link := list removeLast.
 	self assert: link value equals: 3.
@@ -284,9 +241,9 @@ CTDoubleLinkedListTests >> testThreeRemoveLast [
 ]
 
 { #category : #testing }
-CTDoubleLinkedListTests >> testThreeRemoveLink [
+DoubleLinkedListTests >> testThreeRemoveLink [
 	| list link |
-	list := CTDoubleLinkedList new.
+	list := DoubleLinkedList new.
 	list add: 1.
 	link := list add: 2.
 	list add: 3.
