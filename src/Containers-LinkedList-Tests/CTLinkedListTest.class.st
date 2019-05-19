@@ -60,7 +60,7 @@ CTLinkedListTest >> collection [
 	^ self nonEmpty
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> collectionClass [
 	"return the class to be used to create instances of the class tested"
 	^ CTLinkedList
@@ -68,19 +68,20 @@ CTLinkedListTest >> collectionClass [
 
 { #category : #requirements }
 CTLinkedListTest >> collectionMoreThan1NoDuplicates [
-	" return a collection of size 5 without equal elements"
+	"Return a collection of size 5 without equal elements"
 	^ collectionWithoutEqualElements
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> collectionNotIncluded [
-" return a collection for wich each element is not included in 'nonEmpty' "
+	"Return a collection for wich each element is not included in 'nonEmpty'"
+	
 	^ collectionWithoutNil 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> collectionWith1TimeSubcollection [
-" return a collection including 'oldSubCollection'  only one time "
+	"Return a collection including 'oldSubCollection'  only one time"
 	^ self oldSubCollection 
 ]
 
@@ -98,13 +99,13 @@ CTLinkedListTest >> collectionWithElement [
 
 { #category : #requirements }
 CTLinkedListTest >> collectionWithElementsToRemove [
-" return a collection of elements included in 'nonEmpty'  "
+	"Return a collection of elements included in 'nonEmpty'"
 	^ self nonEmpty 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> collectionWithSortableElements [
-	" return a collection only including elements that can be sorted (understanding '<' )"
+	"Return a collection only including elements that can be sorted (understanding '<' )"
 	^ collection5Elements 
 ]
 
@@ -117,54 +118,55 @@ CTLinkedListTest >> collectionWithoutEqualElements [
 
 { #category : #requirements }
 CTLinkedListTest >> collectionWithoutNilElements [
-" return a collection that doesn't includes a nil element "
-	^collectionWithoutNil 
+	"Return a collection that doesn't includes a nil element"
+	
+	^ collectionWithoutNil 
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> element [
-	^ link ifNil: [link := CTValueLink value: 42. "so that we can recognize this link"]
+	^ link ifNil: [link := self valueLinkElementClass value: 42 ]
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> elementInForElementAccessing [
-" return an element inculded in 'accessCollection '"
+	"Return an element inculded in 'accessCollection '"
 	^ elementIn 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> elementInForIndexAccessing [
-" return an element included in 'accessCollection' "
+	"Return an element included in 'accessCollection'"
 	^ elementIn 
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> elementNotIn [
-	^ CTLink new
+	^ self simpleLinkElementClass new
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> elementNotInForElementAccessing [
-" return an element not included in 'accessCollection' "
+	"Return an element not included in 'accessCollection'"
 	^ elementNotIn 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> elementNotInForIndexAccessing [
-" return an element not included in 'accessCollection' "
+	"Return an element not included in 'accessCollection'"
 	^ elementNotIn 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> elementNotInForOccurrences [
-" return an element notIncluded in #collectionWithoutEqualElements"
+	"Return an element notIncluded in #collectionWithoutEqualElements"
 	^ elementNotIn 
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> elementToAdd [
 	"return an element of type 'nonEmpy' elements'type'"
-	^ CTValueLink value: 77
+	^ self valueLinkElementClass value: 77
 ]
 
 { #category : #'tests - empty' }
@@ -174,27 +176,31 @@ CTLinkedListTest >> empty [
 
 { #category : #requirements }
 CTLinkedListTest >> indexInForCollectionWithoutDuplicates [
-" return an index between 'collectionWithoutEqualsElements'  bounds"
+	"Return an index between 'collectionWithoutEqualsElements'  bounds"
 	^ 2
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> indexInNonEmpty [
-" return an index between bounds of 'nonEmpty' "
+	"Return an index between bounds of 'nonEmpty'"
 
 	^ self nonEmpty size
 ]
 
+{ #category : #'class/instances' }
+CTLinkedListTest >> linkedList [
+	^ self collectionClass new
+]
+
 { #category : #requirements }
 CTLinkedListTest >> moreThan3Elements [
-	" return a collection including atLeast 3 elements"
+	"Return a collection including atLeast 3 elements"
 	^ collectionWithoutEqualElements 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> moreThan4Elements [
-
-" return a collection including at leat 4 elements"
+	"Return a collection including at leat 4 elements"
 	^ collectionWithoutEqualElements 
 ]
 
@@ -219,44 +225,44 @@ CTLinkedListTest >> nextLink: aLink [
 	nextLink := aLink
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> nonEmpty [
-	^ nonEmpty ifNil: [nonEmpty := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1 with: self element]
+	^ nonEmpty ifNil: [nonEmpty := self collectionClass with: 5 with: 4 with: 3 with: 2 with: 1 with: self element]
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> nonEmpty1Element [
-" return a collection of size 1 including one element"
+	"Return a collection of size 1 including one element"
 	^ nonEmpty1Element 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> nonEmptyMoreThan1Element [
-" return a collection that don't includes equl elements'" 
+	"Return a collection that don't includes equal elements'" 
 	^collectionWithoutNil 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> nonEmptyWithoutEqualElements [
-" return a collection without equal elements "
+	"Return a collection without equal elements "
 	^ collectionWithoutEqualElements 
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> oldSubCollection [
-" return a subCollection included in collectionWith1TimeSubcollection .
-ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
+	" return a subCollection included in collectionWith1TimeSubcollection .
+	ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	^ self nonEmpty 
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> otherCollection [
-	^ otherList ifNil: [otherList := CTLinkedList with: CTLink new with: CTLink new]
+	^ otherList ifNil: [otherList := self collectionClass with: self simpleLinkElementClass new with: self simpleLinkElementClass new]
 ]
 
 { #category : #requirements }
 CTLinkedListTest >> replacementCollection [
-" return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
+	"Return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	^ collectionWithoutNil 
 ]
 
@@ -268,27 +274,47 @@ CTLinkedListTest >> result [
 
 { #category : #running }
 CTLinkedListTest >> setUp [
-	
 	super setUp.
-	list := CTLinkedList new.
+	list := self linkedList.
 	link1 := 133.
 	link2 := 'test'.
 	link3 := $h.
 	link4 := Set new.
 	elementNotIn := CTLink new.
-	collectionWithoutNil := CTLinkedList new add: link1; add: link2 ; add: link3; yourself.
+	collectionWithoutNil := CTLinkedList new
+		add: link1;
+		add: link2;
+		add: link3;
+		yourself.
 	elementIn := 'thisElementIsIncluded'.
-	collectionWithoutEqualElements := CTLinkedList new add: elementIn ; add: 'pewpew' ; add: 'normal links'; add: 'are no fun!' ;add: $x ;yourself.
-	collection5Elements := collectionWithoutEqualElements .
-	unsortedCollection := CTLinkedList new addAll: #(57 937 92 49 0 78 -87); yourself.
-	sortedCollection := CTLinkedList new addAll: #(-87 0 49 57 78 92 937); yourself.
+	collectionWithoutEqualElements := CTLinkedList new
+		add: elementIn;
+		add: 'pewpew';
+		add: 'normal links';
+		add: 'are no fun!';
+		add: $x;
+		yourself.
+	collection5Elements := collectionWithoutEqualElements.
+	unsortedCollection := CTLinkedList new
+		addAll: #(57 937 92 49 0 78 -87);
+		yourself.
+	sortedCollection := CTLinkedList new
+		addAll: #(-87 0 49 57 78 92 937);
+		yourself.
 	"sameAttendAndBegining := LinkedList new add: Link new; add: Link new ; add: Link new; yourself."
 	link := CTValueLink value: 42.
-	nonEmpty1Element := CTLinkedList new add: CTLink new; yourself.
-	 "so that we can recognize this link"
+	nonEmpty1Element := CTLinkedList new
+		add: CTLink new;
+		yourself
+	"so that we can recognize this link"
 	"nonEmpty := LinkedList with: link with: Link new."
 	"otherList := LinkedList with: Link new with: Link new."
+]
 
+{ #category : #'class/instances' }
+CTLinkedListTest >> simpleLinkElementClass [
+
+	^ CTLink
 ]
 
 { #category : #requirements }
@@ -298,7 +324,7 @@ CTLinkedListTest >> sortedInAscendingOrderCollection [
 	
 ]
 
-{ #category : #requirements }
+{ #category : #'class/instances' }
 CTLinkedListTest >> speciesClass [
 	
 	^ CTLinkedList
@@ -843,12 +869,12 @@ CTLinkedListTest >> testRemoveAll [
 	self assert: list2 size = 4 description: 'the copy has not been modified'
 ]
 
-{ #category : #requirements }
+{ #category : #tests }
 CTLinkedListTest >> testSort [
 	|aLinkedList|
-	 aLinkedList := (CTLinkedList with: 1 with: 2).
+	aLinkedList := (CTLinkedList with: 1 with: 2).
 	aLinkedList  sort: [ :a :b | a > b].
-	self assert: (aLinkedList = (CTLinkedList with: 2 with: 1)).
+	self assert: aLinkedList equals: (CTLinkedList with: 2 with: 1)
 ]
 
 { #category : #'tests - swap' }
@@ -919,6 +945,12 @@ CTLinkedListTest >> testTAdd [
 
 { #category : #requirements }
 CTLinkedListTest >> unsortedCollection [
-"Return a collection that is not yet sorted"
+	"Return a collection that is not yet sorted"
 	^ unsortedCollection
+]
+
+{ #category : #'class/instances' }
+CTLinkedListTest >> valueLinkElementClass [
+
+	^ CTValueLink
 ]
