@@ -6,7 +6,7 @@ add: aLinkOrObject afterLink: otherLink
 	| savedLink aLink |
 	lastLink == otherLink ifTrue: [^ self addLast: aLinkOrObject].
 	savedLink := otherLink nextLink.
-	aLink := aLinkOrObject asCtLink.
+	aLink := CTValueLink value: aLinkOrObject.
 	otherLink nextLink: aLink.
 	aLink nextLink:  savedLink.
 	^aLink.

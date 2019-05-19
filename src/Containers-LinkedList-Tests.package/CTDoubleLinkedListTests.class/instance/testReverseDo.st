@@ -1,4 +1,4 @@
-testing
+tests
 testReverseDo
 	| list value |
 	list := CTDoubleLinkedList new.

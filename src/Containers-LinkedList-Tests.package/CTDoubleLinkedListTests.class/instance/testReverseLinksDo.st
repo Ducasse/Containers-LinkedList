@@ -1,4 +1,4 @@
-testing
+tests
 testReverseLinksDo
 	| list links index |
 	list := CTDoubleLinkedList new.

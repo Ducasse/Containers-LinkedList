@@ -1,4 +1,4 @@
-testing
+tests
 testReverseCollectUntilTrue
 	| list fifthItem |
 	list := CTDoubleLinkedList doubleLinkedListWith10Integers.

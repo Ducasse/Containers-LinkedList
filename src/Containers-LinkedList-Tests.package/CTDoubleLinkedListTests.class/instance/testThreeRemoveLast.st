@@ -1,4 +1,4 @@
-testing
+tests
 testThreeRemoveLast
 	| list link |
 	list := CTDoubleLinkedList new.

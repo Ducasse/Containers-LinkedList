@@ -1,4 +1,4 @@
-testing
+tests
 testFirstAndLastLink
 	| list firstLink secondLink |
 	list := CTDoubleLinkedList new.

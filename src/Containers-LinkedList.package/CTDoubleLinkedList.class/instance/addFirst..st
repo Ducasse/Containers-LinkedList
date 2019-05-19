@@ -4,7 +4,7 @@ addFirst: anObjectOrLink
 	Return the internal link object."
 	
 	| link |
-	link := anObjectOrLink asCtDoubleLink.
+	link := CTDoubleLink value: anObjectOrLink.
 	link nextLink: head.
 	head ifNotNil: [ head previousLink: link ].
 	tail ifNil: [ tail := link ].

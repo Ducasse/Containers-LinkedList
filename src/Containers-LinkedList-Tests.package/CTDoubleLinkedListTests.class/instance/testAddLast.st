@@ -1,4 +1,4 @@
-testing
+tests
 testAddLast
 	| list |
 	list := CTDoubleLinkedList new.

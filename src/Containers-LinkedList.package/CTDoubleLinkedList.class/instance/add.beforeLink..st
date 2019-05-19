@@ -7,7 +7,7 @@ add: anObjectOrLink beforeLink: otherLink
 	| link otherLinkPredeccessor |
 	otherLink = head
 		ifTrue: [ ^ self addFirst: anObjectOrLink ].
-	link := anObjectOrLink asCtDoubleLink.
+	link := CTDoubleLink value: anObjectOrLink.
 	otherLinkPredeccessor := otherLink previousLink.
 	otherLink previousLink: link.
 	link nextLink: otherLink.

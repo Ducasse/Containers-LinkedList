@@ -2,7 +2,7 @@ adding
 addLast: aLinkOrObject
 	"Add aLink to the end of the receiver's list. Answer aLink."
 	|aLink|
-	aLink := aLinkOrObject asCtLink.
+	aLink := CTValueLink value: aLinkOrObject.
 	self isEmpty
 		ifTrue: [firstLink := aLink]
 		ifFalse: [lastLink nextLink: aLink].

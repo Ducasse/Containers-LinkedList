@@ -7,7 +7,7 @@ add: anObjectOrLink afterLink: otherLink
 	| link otherLinkSuccessor |
 	otherLink = tail
 		ifTrue: [ ^ self addLast: anObjectOrLink ].
-	link := anObjectOrLink asCtDoubleLink.
+	link := CTDoubleLink value: anObjectOrLink.
 	otherLinkSuccessor := otherLink nextLink.
 	otherLink nextLink: link.
 	link previousLink: otherLink.

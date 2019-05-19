@@ -1,4 +1,4 @@
-testing
+tests
 testSelect
 	| list even |
 	list := CTDoubleLinkedList new.

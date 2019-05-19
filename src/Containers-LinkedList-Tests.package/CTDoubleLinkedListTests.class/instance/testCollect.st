@@ -1,4 +1,4 @@
-testing
+tests
 testCollect
 	| list doubles |
 	list := CTDoubleLinkedList new.

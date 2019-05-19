@@ -1,4 +1,4 @@
-testing
+tests
 testThree
 	| list |
 	list := CTDoubleLinkedList new.

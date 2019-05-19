@@ -4,4 +4,4 @@ firstLink
 	empty."
 
 	self emptyCheck.
-	^firstLink 
+	^ firstLink 

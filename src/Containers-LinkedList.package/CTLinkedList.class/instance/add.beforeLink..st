@@ -9,7 +9,7 @@ add: aLinkOrObject beforeLink: otherLink
 	[currentLink == nil] whileFalse: [
 		currentLink nextLink == otherLink ifTrue: [
 			| aLink |
-			aLink := aLinkOrObject asCtLink.
+			aLink := CTValueLink value: aLinkOrObject.
 			aLink nextLink: currentLink nextLink.
 			currentLink nextLink: aLink.
 			^ aLink
