@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfContainersDoubleLinkedList,
+	#name : #BaselineOfContainersLinkedList,
 	#superclass : #BaselineOf,
 	#category : #BaselineOfContainersLinkedList
 }
 
 { #category : #baselines }
-BaselineOfContainersDoubleLinkedList >> baseline: spec [
+BaselineOfContainersLinkedList >> baseline: spec [
 	<baseline>
 	spec
 		for: #pharo
