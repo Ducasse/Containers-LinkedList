@@ -62,8 +62,8 @@ CTLinkedListTest >> collection [
 
 { #category : #requirements }
 CTLinkedListTest >> collectionClass [
-" return the class to be used to create instances of the class tested"
-	^ LinkedList
+	"return the class to be used to create instances of the class tested"
+	^ CTLinkedList
 ]
 
 { #category : #requirements }
@@ -221,7 +221,7 @@ CTLinkedListTest >> nextLink: aLink [
 
 { #category : #requirements }
 CTLinkedListTest >> nonEmpty [
-	^ nonEmpty ifNil: [nonEmpty := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1 with: self element]
+	^ nonEmpty ifNil: [nonEmpty := CTLinkedList with: 5 with: 4 with: 3 with: 2 with: 1 with: self element]
 ]
 
 { #category : #requirements }
@@ -251,7 +251,7 @@ ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 
 
 { #category : #requirements }
 CTLinkedListTest >> otherCollection [
-	^ otherList ifNil: [otherList := LinkedList with: Link new with: Link new]
+	^ otherList ifNil: [otherList := CTLinkedList with: Link new with: Link new]
 ]
 
 { #category : #requirements }
@@ -270,21 +270,21 @@ CTLinkedListTest >> result [
 CTLinkedListTest >> setUp [
 	
 	super setUp.
-	list := LinkedList new.
+	list := CTLinkedList new.
 	link1 := 133.
 	link2 := 'test'.
 	link3 := $h.
 	link4 := Set new.
 	elementNotIn := Link new.
-	collectionWithoutNil := LinkedList new add: link1; add: link2 ; add: link3; yourself.
+	collectionWithoutNil := CTLinkedList new add: link1; add: link2 ; add: link3; yourself.
 	elementIn := 'thisElementIsIncluded'.
-	collectionWithoutEqualElements := LinkedList new add: elementIn ; add: 'pewpew' ; add: 'normal links'; add: 'are no fun!' ;add: $x ;yourself.
+	collectionWithoutEqualElements := CTLinkedList new add: elementIn ; add: 'pewpew' ; add: 'normal links'; add: 'are no fun!' ;add: $x ;yourself.
 	collection5Elements := collectionWithoutEqualElements .
-	unsortedCollection := LinkedList new addAll: #(57 937 92 49 0 78 -87); yourself.
-	sortedCollection := LinkedList new addAll: #(-87 0 49 57 78 92 937); yourself.
+	unsortedCollection := CTLinkedList new addAll: #(57 937 92 49 0 78 -87); yourself.
+	sortedCollection := CTLinkedList new addAll: #(-87 0 49 57 78 92 937); yourself.
 	"sameAttendAndBegining := LinkedList new add: Link new; add: Link new ; add: Link new; yourself."
 	link := ValueLink value: 42.
-	nonEmpty1Element :=  LinkedList new add: Link new; yourself.
+	nonEmpty1Element := CTLinkedList new add: Link new; yourself.
 	 "so that we can recognize this link"
 	"nonEmpty := LinkedList with: link with: Link new."
 	"otherList := LinkedList with: Link new with: Link new."
@@ -301,7 +301,7 @@ CTLinkedListTest >> sortedInAscendingOrderCollection [
 { #category : #requirements }
 CTLinkedListTest >> speciesClass [
 	
-	^LinkedList
+	^ CTLinkedList
 ]
 
 { #category : #requirements }
@@ -743,7 +743,7 @@ CTLinkedListTest >> test22addAll [
 CTLinkedListTest >> testAddAfter [
 
 	| l first |
-	l := LinkedList new.
+	l := CTLinkedList new.
 	first := self class new n: 1.
 	
 	l add: first.
@@ -757,7 +757,7 @@ CTLinkedListTest >> testAddAfter [
 CTLinkedListTest >> testAddAfterLast [
 
 	| l last |
-	l := LinkedList new.
+	l := CTLinkedList new.
 	last := self class new n: 2.
 	l add: (self class new n: 1).
 	l add: last.
@@ -771,7 +771,7 @@ CTLinkedListTest >> testAddAfterLast2 [
 	"LinkedListTest new testAddAfterLast2"
 
 	| l first second third fourth |
-	l := LinkedList new.
+	l := CTLinkedList new.
 	first := self class new n: 1.
 	second := self class new n: 2.
 	third := self class new n: 3.
@@ -807,8 +807,8 @@ CTLinkedListTest >> testCreateAs [
 	Implementation note: this method is generic for sequenceable collection and should be traitified."
 	| anotherCollection aLinkedList |
 	anotherCollection := 1 to: 10.
-	aLinkedList := anotherCollection as: LinkedList.
-	self assert: (aLinkedList isMemberOf: LinkedList).
+	aLinkedList := anotherCollection as: CTLinkedList.
+	self assert: (aLinkedList isMemberOf: CTLinkedList).
 	self assert: aLinkedList size equals: anotherCollection size.
 	aLinkedList with: anotherCollection do: [:nextElementOfLinkedList :nextElementOfAnotherCollection |
 		self assert: nextElementOfLinkedList equals: nextElementOfAnotherCollection]
@@ -854,9 +854,9 @@ CTLinkedListTest >> testRemoveAll [
 { #category : #requirements }
 CTLinkedListTest >> testSort [
 	|aLinkedList|
-	 aLinkedList := (LinkedList with: 1 with: 2).
+	 aLinkedList := (CTLinkedList with: 1 with: 2).
 	aLinkedList  sort: [ :a :b | a > b].
-	self assert: (aLinkedList = (LinkedList with: 2 with: 1)).
+	self assert: (aLinkedList = (CTLinkedList with: 2 with: 1)).
 ]
 
 { #category : #'tests - swap' }
