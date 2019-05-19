@@ -1,7 +1,7 @@
 Class {
 	#name : #DoubleLinkedListTests,
 	#superclass : #TestCase,
-	#category : #'Containers-DoubleLinkedList-Tests'
+	#category : #'Containers-LinkedList-Tests'
 }
 
 { #category : #testing }

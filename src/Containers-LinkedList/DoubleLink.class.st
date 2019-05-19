@@ -11,7 +11,7 @@ Class {
 		'nextLink',
 		'previousLink'
 	],
-	#category : #'Containers-DoubleLinkedList'
+	#category : #'Containers-LinkedList'
 }
 
 { #category : #'instance creation' }

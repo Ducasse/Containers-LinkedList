@@ -12,7 +12,7 @@ Class {
 		'head',
 		'tail'
 	],
-	#category : #'Containers-DoubleLinkedList'
+	#category : #'Containers-LinkedList'
 }
 
 { #category : #adding }
