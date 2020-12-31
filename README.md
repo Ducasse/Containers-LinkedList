@@ -1,7 +1,6 @@
 # Containers-LinkedList
 
 [![Build Status](https://travis-ci.com/Ducasse/Containers-LinkedList.svg?branch=master)](https://travis-ci.com/Ducasse/Containers-LinkedList)
-
 ![https://github.com/Ducasse/Containers-LinkedList/workflows/currentStablePharo/badge.svg](https://github.com/Ducasse/Containers-LinkedList/workflows/currentStablePharo/badge.svg)
 ![https://github.com/Ducasse/Containers-LinkedList/workflows/matrix/badge.svg](https://github.com/Ducasse/Containers-LinkedList/workflows/matrix/badge.svg)
 
