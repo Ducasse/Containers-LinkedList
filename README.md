@@ -1,11 +1,13 @@
 # Containers-LinkedList
 
 [![Build Status](https://travis-ci.com/Ducasse/Containers-LinkedList.svg?branch=master)](https://travis-ci.com/Ducasse/Containers-LinkedList)
+
+![https://github.com/Ducasse/Containers-LinkedList/workflows/currentStablePharo/badge.svg](https://github.com/Ducasse/Containers-LinkedList/workflows/currentStablePharo/badge.svg)
+![https://github.com/Ducasse/Containers-LinkedList/workflows/matrix/badge.svg](https://github.com/Ducasse/Containers-LinkedList/workflows/matrix/badge.svg)
+
 [![Coverage Status](https://coveralls.io/repos/github//Ducasse/Containers-LinkedList/badge.svg?branch=master)](https://coveralls.io/github//Ducasse/Containers-LinkedList?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)]()
-[![Pharo version](https://img.shields.io/badge/Pharo-6.1-%23aac9ff.svg)](https://pharo.org/download)
-[![Pharo version](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
-[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
+
 <!-- [![Build status](https://ci.appveyor.com/api/projects/status/1wdnjvmlxfbml8qo?svg=true)](https://ci.appveyor.com/project/olekscode/dataframe)  -->
 
 
