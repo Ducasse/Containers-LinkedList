@@ -29,4 +29,4 @@ spec
 ```
 
 --
-The best way to predict the future is to do it! Less talking more doing. stepharo.self@gmail.com
+The best way to predict the future is to do it!
