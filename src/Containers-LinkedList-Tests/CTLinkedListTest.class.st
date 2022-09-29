@@ -29,7 +29,7 @@ Class {
 		'unsortedCollection',
 		'sortedCollection'
 	],
-	#category : 'Containers-LinkedList-Tests'
+	#category : #'Containers-LinkedList-Tests'
 }
 
 { #category : #requirements }
@@ -969,6 +969,19 @@ CTLinkedListTest >> testTAddAll [
 	added := collection addAll: toBeAdded.
 	self assert: added == toBeAdded.	"test for identity because #addAll: has not reason to copy its parameter."
 	self assert: (collection includesAll: toBeAdded )
+]
+
+{ #category : #'tests - adding' }
+CTLinkedListTest >> testTAddWithOccurrences [
+	| added oldSize collection anElement |
+	collection := self collectionWithElement.
+	anElement := 'a'.
+	oldSize := collection size.
+	added := collection add: 'a' withOccurrences: 5.
+	
+
+	self assert: (collection includes: anElement).
+	self assert: collection size equals: oldSize + 5
 ]
 
 { #category : #requirements }
