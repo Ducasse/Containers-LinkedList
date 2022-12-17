@@ -184,7 +184,8 @@ CTLinkedList >> addLast: aLinkOrObject [
 ]
 
 { #category : #append }
-CTLinkedList >> append: aCollection [ 
+CTLinkedList >> append: aCollection [
+	aCollection isNil ifTrue: [ ^ self].
 	aCollection isEmpty ifTrue: [ ^ self].
 	self isEmpty
 		ifTrue: [ self add: aCollection firstLink. ^ self ].
