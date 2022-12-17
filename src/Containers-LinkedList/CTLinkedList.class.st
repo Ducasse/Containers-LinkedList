@@ -73,7 +73,7 @@ Class {
 		'firstLink',
 		'lastLink'
 	],
-	#category : 'Containers-LinkedList'
+	#category : #'Containers-LinkedList'
 }
 
 { #category : #'instance creation' }
@@ -181,6 +181,15 @@ CTLinkedList >> addLast: aLinkOrObject [
 		ifFalse: [lastLink nextLink: aLink].
 	lastLink := aLink.
 	^aLink
+]
+
+{ #category : #append }
+CTLinkedList >> append: aCollection [ 
+	aCollection isEmpty ifTrue: [ ^ self].
+	self isEmpty
+		ifTrue: [ self add: aCollection firstLink. ^ self ].
+	
+	self lastLink nextLink: aCollection firstLink
 ]
 
 { #category : #accessing }
